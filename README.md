@@ -36,7 +36,7 @@ git clone git@github.com:deepikabekal/Project-3.git
 ````
 npm install
 ````
-3. Request the .env file and insert it at the root level of the project
+3. Request the .env file and insert it in the /server folder. That file contains the jwt secret
 
 ## Usage
 1. Cd to the root folder and start the project (client and server concurrently)
