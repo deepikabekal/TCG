@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
+const Art = require('./Art');
 
 const userSchema = new Schema(
     {
@@ -20,6 +21,7 @@ const userSchema = new Schema(
         required: true,
         minlength: 5
       },
+      art: [Art.schema]
     },
     {
       toJSON: {
