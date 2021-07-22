@@ -12,15 +12,27 @@ type Auth {
     user: User
 }
 
+type Art {
+    title: String!
+    description: String
+    medium: String
+    price: Int!
+    dimensions : String!
+    image: String!
+}
+
 type Query {
     me: User
     users: [User]
     user(username: String!): User
+    arts: [Art]
+    art(title: String!): Art
 }
 
 type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
+    addArt(title: String!, description: String, medium: String, price: Int!, dimensions: String!, image: String!) : Art
 }
 `
 
