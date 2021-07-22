@@ -2,6 +2,7 @@ const express = require('express');
 const {ApolloServer} = require('apollo-server-express');
 const path = require('path');
 require('dotenv').config();
+const { cloudinary } = require("./utils/cloudinary");
 
 const {typeDefs, resolvers} = require('./schemas');
 const {authMiddleware} = require('./utils/auth');
@@ -29,6 +30,19 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.join(__dirname, '../client/build/index.html'));
   });
   
+//upload image to cloudinary  
+app.post("/api/upload", async (req,res)=>{
+  try{
+    const fileStr = req.body.data;
+    const uploadResponse = await cloudinary.uploader.upload(fileStr,{upload_presets: "aaxfejm1"})
+    console.log(uploadResponse);
+    res.json({msg:"uploaded"})
+  } catch(error) {
+    console.error(error);
+    res.status(500).json({err: "something went wrong"})
+  }
+})
+
   db.once('open', () => {
     app.listen(PORT, () => {
       console.log(`API server running on port ${PORT}!`);
