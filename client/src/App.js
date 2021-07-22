@@ -8,7 +8,6 @@ import Signup from './pages/Signup';
 import Login from './pages/Login';
 import NoMatch from './pages/NoMatch';
 import Profile from './pages/Profile';
-import ArtForSale from './pages/ArtForSale';
 import Contact from './pages/Contact';
 import Gallery from './pages/Gallery';
 
