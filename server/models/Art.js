@@ -23,4 +23,8 @@ const artSchema = new Schema({
   image: {
     type: String
   }
-})
+});
+
+const Art = mongoose.model('Art', artSchema);
+
+module.exports = Art;
