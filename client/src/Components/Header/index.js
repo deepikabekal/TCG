@@ -28,6 +28,7 @@ const Header = () => {
                   <Link to="/home">Home</Link>
                   <Link to="/gallery">Gallery</Link>
                   <Link to="/login">Login</Link>
+                  <Link to="/login">Sign Up</Link>
                 </>
               )}
             </nav>
