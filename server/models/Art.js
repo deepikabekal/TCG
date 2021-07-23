@@ -19,9 +19,14 @@ const artSchema = new Schema({
     require: true,
     min: 0.99
   },
+  dimensions: {
+    type: String,
+    required: true
+  },
   // placeholder until we establish how we're doing images. This is how it was done in shop-shop module 22.
   image: {
-    type: String
+    type: String,
+    required: true
   }
 });
 
