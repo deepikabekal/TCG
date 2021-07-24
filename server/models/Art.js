@@ -25,7 +25,17 @@ const artSchema = new Schema({
   image: {
     type: String,
     required: true
-  }
+  },
+  voteCount: {
+    type: Number,
+    default: 0
+  },
+  vote: [{
+    User: {
+      type: Schema.Types.ObjectId,
+      ref: 'User'
+    }
+  }]
 });
 
 const Art = model('Art', artSchema);
