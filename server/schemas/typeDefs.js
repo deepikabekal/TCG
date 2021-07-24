@@ -16,12 +16,11 @@ type Art {
     _id: ID
     description: String
     medium: String
-    image: String
-    username: String
     title: String!
     price: Int!
     dimensions : String!
     image: String!
+    username: String
 }
 
 type Query {

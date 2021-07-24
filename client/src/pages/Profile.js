@@ -1,10 +1,10 @@
 import React, { useState } from "react"
 
-import { Redirect, useParams } from 'react-router-dom';
+//import { Redirect, useParams } from 'react-router-dom';
 
-import { useQuery, useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import { ADD_ART } from "../utils/mutations"
-import Auth from '../utils/auth';
+//import Auth from '../utils/auth';
 
 function Profile() {
 
@@ -19,7 +19,7 @@ function Profile() {
         image: ""
     })
 
-    const [addArt, { error }] = useMutation(ADD_ART);
+    const [addArt] = useMutation(ADD_ART);
 
     const handleChange = e => {
         const { value, name } = e.target
@@ -120,7 +120,7 @@ function Profile() {
                 {
                     loading ? (
                         <h3>Loading...</h3>
-                    ) : <img src={image} style={{ width: "300px" }} />
+                    ) : <img src={image} alt="" style={{ width: "300px" }} />
                 }
             </div>
 
