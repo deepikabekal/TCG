@@ -3,35 +3,40 @@ const bcrypt = require('bcrypt');
 const Art = require('./Art');
 
 const userSchema = new Schema(
-    {
-      username: {
-        type: String,
-        required: true,
-        unique: true,
-        trim: true
-      },
-      email: {
-        type: String,
-        required: true,
-        unique: true,
-        match: [/.+@.+\..+/, 'Must match an email address!']
-      },
-      password: {
-        type: String,
-        required: true,
-        minlength: 5
-      },
-      art: [Art.schema]
+  {
+    username: {
+      type: String,
+      required: true,
+      unique: true,
+      trim: true
     },
-    {
-      toJSON: {
-        virtuals: true
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+      match: [/.+@.+\..+/, 'Must match an email address!']
+    },
+    password: {
+      type: String,
+      required: true,
+      minlength: 5
+    },
+    arts: [
+      {
+      type: Schema.Types.ObjectId,
+      ref: 'Thought'
       }
+    ]
+  },
+  {
+    toJSON: {
+      virtuals: true
     }
-  );
+  }
+);
 
 // set up pre-save middleware to create password
-userSchema.pre('save', async function(next) {
+userSchema.pre('save', async function (next) {
   if (this.isNew || this.isModified('password')) {
     const saltRounds = 10;
     this.password = await bcrypt.hash(this.password, saltRounds);
@@ -41,10 +46,10 @@ userSchema.pre('save', async function(next) {
 });
 
 // compare the incoming password with the hashed password
-userSchema.methods.isCorrectPassword = async function(password) {
+userSchema.methods.isCorrectPassword = async function (password) {
   return bcrypt.compare(password, this.password);
 };
-  
+
 const User = model('User', userSchema);
 
 module.exports = User;
