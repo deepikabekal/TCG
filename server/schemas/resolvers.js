@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User } = require('../models');
+const { User, Art } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -24,6 +24,10 @@ const resolvers = {
               .select('-__v -password')
               //.populate('artsCollection')
           },
+          //get all artworks
+        arts: async () => {
+            return Art.find().sort({createdAt: -1});
+        }
     },
 
     Mutation: {
@@ -49,7 +53,7 @@ const resolvers = {
 
             const token = signToken(user);
             return { token, user };
-        },
+        }
     }
 }
 

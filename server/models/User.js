@@ -21,7 +21,11 @@ const userSchema = new Schema(
         required: true,
         minlength: 5
       },
-      art: [Art.schema]
+      art: [
+        {
+        type: Schema.Types.ObjectId,
+        ref: 'Art'
+        }]
     },
     {
       toJSON: {

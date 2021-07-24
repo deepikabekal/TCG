@@ -15,7 +15,7 @@ const artSchema = new Schema({
     type: String
   },
   price: {
-    type: Number,
+    type: String,
     require: true,
     min: 0.99
   },
@@ -27,7 +27,12 @@ const artSchema = new Schema({
   image: {
     type: String,
     required: true
+  },
+  username: {
+    type: String,
+    required: true
   }
+
 });
 
 const Art = mongoose.model('Art', artSchema);

@@ -12,10 +12,22 @@ type Auth {
     user: User
 }
 
+type Art {
+    _id: ID
+    title: String
+    description: String
+    medium: String
+    price: String
+    dimensions: String
+    image: String
+    username: String
+}
+
 type Query {
     me: User
     users: [User]
     user(username: String!): User
+    arts: [Art]
 }
 
 type Mutation {
