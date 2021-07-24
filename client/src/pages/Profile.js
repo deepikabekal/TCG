@@ -1,82 +1,97 @@
-import React, { useState } from 'react';
+import React, { useState } from "react"
 
-const Profile = () => {
-    const [fileInputState, setFileInputState] = useState()
-    const [previewSource, setPreviewSource] = useState()
+import { Redirect, useParams } from 'react-router-dom';
 
-    // handle form add art submit and image post to cloudinary
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (!previewSource) return;
-        uploadImage(previewSource);
+import { useQuery, useMutation } from '@apollo/client';
+import Auth from '../utils/auth';
 
-    };
+function Profile() {
 
-    const handleChange = (e) => {
-        console.log(e.target.name)
-    }
+    const [loading, setLoading] = useState(false)
+    const [image, setImage] = useState("")
+    const [formInfo, setFormInfo] = useState({
+        title: "",
+        description: "",
+        medium: "",
+        sellprice: 0,
+        image: ""
+    })
 
-    //listens for file name change input
-    const handleFileInputChange = (e) => {
-        const file = e.target.files[0];
-        previewFile(file);
-    }
+    const handleChange = e => {
 
-    //preview image selected
-    const previewFile = (file) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onloadend = () => {
-            setPreviewSource(reader.result)
-        }
-    }
+        const{ value, name} = e.target
 
-    const uploadImage = async (base64EncodedImage) => {
-        console.log(base64EncodedImage);
-        try {
-            await fetch("/api/upload", {
-                method: "POST",
-                body: JSON.stringify({ data: base64EncodedImage }),
-                headers: { "Content-type": "application/json" }
+        setFormInfo((prevValue)=>{
+            return {
+                ...prevValue,
+                [name]: value
             }
-            )
+        })
 
-        } catch (error) {
-            console.error(error)
-        }
+        console.log(formInfo)
+    }
+
+    const uploadImage = async e => {
+        const files = e.target.files
+        const data = new FormData()
+        data.append("file", files[0])
+        data.append("upload_preset","jq4k8cp4")
+        setLoading(true)
+        const res = await fetch("https://api.cloudinary.com/v1_1/dg14lkrkd/image/upload",
+        {
+            method: 'POST',
+            body: data
+        })
+
+        // response from cloudinary with url of uploaded image
+        const file = await res.json()
+        console.log(file)
+        
+        setImage(file.secure_url)
+
+        setFormInfo((prevValue)=>{
+            return {
+                ...prevValue,
+                image: file.secure_url
+            }
+        })
+        setLoading(false)
+        console.log("print full object")
+        console.log(formInfo)
     }
 
     return (
+        <form id="add-art">
         <div>
-            <form id="add-art" onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="title">Art Title</label>
-                    <input type="text" name="title" onBlur={handleChange}></input>
-                </div>
-                <div>
-                    <label htmlFor="description">Description</label>
-                    <input type="text" name="description" onBlur={handleChange}></input>
-                </div>
-                <div>
-                    <label htmlFor="medium">Medium</label>
-                    <input type="text" name="description" onBlur={handleChange}></input>
-                </div>
-                <div>
-                    <label htmlFor="sellingprice">Sell Price</label>
-                    <input type="text" name="sellingprice" onBlur={handleChange}></input>
-                </div>
-                <div>
-                    <label htmlFor="imageupload">Upload Art image</label>
-                    <input type="file" name="imageupload" value={fileInputState} onChange={handleFileInputChange}></input>
-                </div>
-
-                <button data-testid="button" type="submit" onClick={uploadImage}>
-                    Submit
-                </button>
-            </form>
-            {previewSource && (<img style={{height:"200px"}}src={previewSource} />)}
+            <label htmlFor="title">Art Title</label>
+            <input type="text" name="title" onChange={handleChange}></input>
         </div>
+        <div>
+            <label htmlFor="description">Description</label>
+            <input type="text" name="description" onChange={handleChange} ></input>
+        </div>
+        <div>
+            <label htmlFor="medium">Medium</label>
+            <input type="text" name="medium" onChange={handleChange}></input>
+        </div>
+        <div>
+            <label htmlFor="sellingprice">Sell Price</label>
+            <input type="text" name="sellprice" onChange={handleChange}></input>
+        </div>
+        <div>
+        <label >Upload Art image</label>
+            <input type="file" name="image" onChange={uploadImage}></input>
+            {
+                loading?(
+                    <h3>Loading...</h3>
+                ):<img src={image} style={{width:"300px"}}/>
+            }
+        </div>
+
+        <button data-testid="button" type="submit">Submit</button>
+        </form>
     )
-};
+
+}
 
 export default Profile;
