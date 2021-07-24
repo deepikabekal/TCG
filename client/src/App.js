@@ -46,6 +46,7 @@ function App() {
               <Route exact path = '/profile/:username' component={Profile} />
               <Route exact path='/contact' component={Contact} />
               <Route exact path='/gallery' component={Gallery} />
+              <Route exact path='/home' component={Home} />
 
               {/* if no route macthes then show error message to user */}
               <Route component={NoMatch} />
