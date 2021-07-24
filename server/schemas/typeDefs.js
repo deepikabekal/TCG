@@ -15,7 +15,7 @@ type Auth {
 type Art {
     _id: ID
     title: String!
-    username: String
+    artist: String
     description: String
     medium: String
     price: Int!

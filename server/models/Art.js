@@ -26,7 +26,7 @@ const artSchema = new Schema({
     type: String,
     required: true
   },
-  username: {
+  artist: {
     type: String,
     required: true
   },
