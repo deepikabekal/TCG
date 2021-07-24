@@ -1,5 +1,6 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { User, Art } = require('../models');
+
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -8,7 +9,7 @@ const resolvers = {
             if (context.user) {
                 const userData = await User.findOne({ _id: context.user._id })
                     .select('-__v -password')
-                    //.populate('artsCollection')
+                //.populate('artsCollection')
                 return userData;
             } throw new AuthenticationError('Not logged in');
         },
@@ -18,16 +19,23 @@ const resolvers = {
                 .select('-__v -password')
 
         },
-        
+
         user: async (parent, { username }) => {
             return User.findOne({ username })
               .select('-__v -password')
               //.populate('artsCollection')
           },
-          //get all artworks
+
+        // Query all arts
         arts: async () => {
-            return Art.find().sort({createdAt: -1});
-        }
+            return Art.find()
+            .select('-__v')
+        },
+
+        // Query one art based on title
+        art: async (parent, { title }) => {
+            return await Art.findOne({ title })
+        },
     },
 
     Mutation: {
@@ -53,6 +61,12 @@ const resolvers = {
 
             const token = signToken(user);
             return { token, user };
+        },
+
+        // Add Art
+        addArt: async (parent, args) => {
+            const art = Art.create(args);
+            return art 
         }
     }
 }

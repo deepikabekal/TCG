@@ -1,6 +1,4 @@
-const mongoose = require('mongoose');
-
-const { Schema } = mongoose;
+const { Schema, model } = require('mongoose');
 
 const artSchema = new Schema({
   title: {
@@ -31,10 +29,19 @@ const artSchema = new Schema({
   username: {
     type: String,
     required: true
-  }
-
+  },
+  voteCount: {
+    type: Number,
+    default: 0
+  },
+  vote: [{
+    User: {
+      type: Schema.Types.ObjectId,
+      ref: 'User'
+    }
+  }]
 });
 
-const Art = mongoose.model('Art', artSchema);
+const Art = model('Art', artSchema);
 
 module.exports = Art;

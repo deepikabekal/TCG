@@ -14,13 +14,14 @@ type Auth {
 
 type Art {
     _id: ID
-    title: String
     description: String
     medium: String
-    price: String
-    dimensions: String
     image: String
     username: String
+    title: String!
+    price: Int!
+    dimensions : String!
+    image: String!
 }
 
 type Query {
@@ -28,11 +29,13 @@ type Query {
     users: [User]
     user(username: String!): User
     arts: [Art]
+    art(title: String!): Art
 }
 
 type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
+    addArt(title: String!, description: String, medium: String, price: Int!, dimensions: String!, image: String!) : Art
 }
 `
 

@@ -43,7 +43,7 @@ function App() {
               <Route exact path='/' component={Home} />
               <Route exact path='/signup' component={Signup} />
               <Route exact path='/login' component={Login} />
-              <Route exact path = '/profile/:username' component={Profile} />
+              <Route exact path = '/profile' component={Profile} />
               <Route exact path='/contact' component={Contact} />
               <Route exact path='/gallery' component={Gallery} />
               <Route exact path='/home' component={Home} />
