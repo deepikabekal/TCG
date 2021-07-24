@@ -27,7 +27,17 @@ const artSchema = new Schema({
   image: {
     type: String,
     required: true
-  }
+  },
+  voteCount: {
+    type: Number,
+    default: 0
+  },
+  vote: [{
+    User: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    }
+  }]
 });
 
 const Art = mongoose.model('Art', artSchema);
