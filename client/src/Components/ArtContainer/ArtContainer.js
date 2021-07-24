@@ -6,7 +6,7 @@ const ArtContainer= () => {
     return (
         <div className="col-6 p-2">
             <div className="card">
-                <img className="card-img-top p-3" src={Artwork1} alt="Card image cap" />
+                <img className="card-img-top p-3" src={Artwork1} alt="art" />
                 <div className="card-body">
                     <h5 className="card-title">Landscape</h5>
                     <p className="card-text">Artist Name</p>

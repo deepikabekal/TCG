@@ -14,13 +14,13 @@ type Auth {
 
 type Art {
     _id: ID
+    title: String!
+    artist: String
     description: String
     medium: String
-    title: String!
     price: Int!
     dimensions : String!
     image: String!
-    username: String
 }
 
 type Query {

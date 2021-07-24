@@ -64,11 +64,19 @@ const resolvers = {
         },
 
         // Add Art
-        addArt: async (parent, args) => {
-            const art = Art.create(args);
+        addArt: async (parent, args, context) => {
+            if (context.user) {
+            const art = await Art.create({...args, artist: context.user.username});
+
+            await User.findByIdAndUpdate(
+                {_id: context.user._id },
+                {$addToSet: { arts: thought._id } },
+                {new: true }
+            );
+
             return art 
-        }
+            }
     }
 }
-
+};
 module.exports = resolvers;
