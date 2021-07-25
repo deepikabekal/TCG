@@ -13,7 +13,7 @@ const artSchema = new Schema({
     type: String
   },
   price: {
-    type: Number,
+    type: String,
     require: true,
     min: 0.99
   },
@@ -23,6 +23,10 @@ const artSchema = new Schema({
   },
   // placeholder until we establish how we're doing images. This is how it was done in shop-shop module 22.
   image: {
+    type: String,
+    required: true
+  },
+  artist: {
     type: String,
     required: true
   },

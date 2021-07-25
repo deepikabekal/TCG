@@ -9,7 +9,7 @@ const resolvers = {
             if (context.user) {
                 const userData = await User.findOne({ _id: context.user._id })
                     .select('-__v -password')
-                //.populate('artsCollection')
+                    .populate('arts')
                 return userData;
             } throw new AuthenticationError('Not logged in');
         },
@@ -22,9 +22,9 @@ const resolvers = {
 
         user: async (parent, { username }) => {
             return User.findOne({ username })
-                .select('-__v -password')
-            //.populate('artsCollection')
-        },
+              .select('-__v -password')
+              .populate('arts')
+          },
 
         // Query all arts
         arts: async () => {
@@ -64,11 +64,19 @@ const resolvers = {
         },
 
         // Add Art
-        addArt: async (parent, args) => {
-            const art = Art.create(args);
+        addArt: async (parent, args, context) => {
+            if (context.user) {
+            const art = await Art.create({...args, artist: context.user.username});
+
+            await User.findByIdAndUpdate(
+                {_id: context.user._id },
+                {$addToSet: { arts: art._id } },
+                {new: true }
+            );
+
             return art 
-        }
+            }
     }
 }
-
+};
 module.exports = resolvers;

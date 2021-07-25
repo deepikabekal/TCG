@@ -24,7 +24,7 @@ const userSchema = new Schema(
     arts: [
       {
       type: Schema.Types.ObjectId,
-      ref: 'Thought'
+      ref: 'Art'
       }
     ]
   },

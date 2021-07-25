@@ -5,6 +5,7 @@ type User {
     _id: ID
     username: String
     email: String
+    arts: [Art]
 }
 
 type Auth {
@@ -13,7 +14,9 @@ type Auth {
 }
 
 type Art {
+    _id: ID
     title: String!
+    artist: String
     description: String
     medium: String
     price: Int!
