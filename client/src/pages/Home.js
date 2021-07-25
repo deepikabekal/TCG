@@ -39,6 +39,31 @@ const Home = () => {
                     Browse the Gallery secction to vote for your favorite art or purchase community selected art.
                 </p>
             </div>
+            <div>
+                <h2>Top 3 art of the day</h2>
+                <div className="row row-cols-1 row-cols-md-3"> 
+                    {artList.map((item) => (
+                        <div className="col mb-4" id="card-box" key={item.name}>
+                            <div className="card h-100">
+                                <img src={require(`../Assets/${item.imageName}`).default} className="image img-thumbnail" alt="featured art"/>
+                                <div className="card-body">
+                                    <div className="justify-space-between-lg flex-row">
+                                        <div>
+                                            <h5 className="card-title">{item.artName}</h5>
+                                            <p className="card-text">Artist: {item.name}</p>
+                                        </div>
+                                        <div className="flex-column text-center">
+                                            <span className="span-text">{item.votes}</span>
+                                            <span className="span-text">${item.price}</span> 
+                                        </div>
+                                    </div>
+                                    <p className="card-text">{item.description}</p>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>  
         </section>
     )
 }
