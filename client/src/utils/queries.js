@@ -45,3 +45,18 @@ export const QUERY_ME_BASIC = gql`
     }
   }
 `;
+
+export const QUERY_ARTS = gql`
+  {
+    arts {
+      _id
+      title
+      artist
+      description
+      medium
+      price
+      dimensions
+      image
+    }
+  }
+`;

@@ -1,7 +1,16 @@
 import React from 'react';
-import ArtContainer from '../Components/ArtContainer/ArtContainer';
+import { useQuery } from '@apollo/client';
+import { QUERY_ARTS } from '../utils/queries';
+import ArtContainer from '../Components/ArtContainer/ArtContainer.js';
 
 const Gallery = () => {
+
+    //use useQuery hook to make query request
+    const { loading, data } = useQuery(QUERY_ARTS);
+    //optional chaining negates the need to check if an object even exists 
+    const artCollection = data?.arts || [];
+    console.log(artCollection);
+
     return (
         <div className="container-fluid">
             <div className="row">
@@ -12,13 +21,9 @@ const Gallery = () => {
                     Browse and vote on your favorite artwork. Artwork with more the 10 votes will be up for sell.
                 </p>
             </div>
-            <div className="row d-flex justify-content-between">
-                {/*use .map to render ArtContainer based on query data received from Database*/}
-                <ArtContainer></ArtContainer>
-                <ArtContainer></ArtContainer>
-                <ArtContainer></ArtContainer>
-                <ArtContainer></ArtContainer>
-            </div>
+           
+           <ArtContainer arts={artCollection}></ArtContainer>
+           
         </div>
     )
 }

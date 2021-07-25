@@ -30,12 +30,13 @@ export const ADD_USER = gql`
 export const ADD_ART = gql`
 mutation addArt($title: String!, $description: String, $medium: String, $price: Int!, $dimensions: String!, $image: String!){
   addArt(title: $title, description: $description, medium: $medium, price: $price, dimensions: $dimensions, image: $image) {
+    _id
     title
+    artist
     description
     price
     medium
     dimensions
-    price
     image
   }
 }
