@@ -237,3 +237,16 @@ col-12 {
 }
 
 
+/* homepage css */
+.card {
+  background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+  box-shadow: 5px 5px 5px lightgray; 
+}
+
+.image {
+    position: relative;
+    width: 500px;
+    height: 300px;
+    transition: 1s;
+    background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+}
