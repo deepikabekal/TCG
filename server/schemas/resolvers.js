@@ -9,7 +9,7 @@ const resolvers = {
             if (context.user) {
                 const userData = await User.findOne({ _id: context.user._id })
                     .select('-__v -password')
-                //.populate('artsCollection')
+                    .populate('arts')
                 return userData;
             } throw new AuthenticationError('Not logged in');
         },
@@ -23,7 +23,7 @@ const resolvers = {
         user: async (parent, { username }) => {
             return User.findOne({ username })
               .select('-__v -password')
-              //.populate('artsCollection')
+              .populate('arts')
           },
 
         // Query all arts

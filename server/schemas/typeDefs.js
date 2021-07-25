@@ -5,6 +5,7 @@ type User {
     _id: ID
     username: String
     email: String
+    arts: [Art]
 }
 
 type Auth {
