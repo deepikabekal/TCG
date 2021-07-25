@@ -131,7 +131,7 @@ function Profile() {
                 }
             </div>
 
-            <button data-testid="button" type="submit">Submit</button>
+            <button className="btn btn-grad" data-testid="button" type="submit">Submit</button>
         </form>
 
         <div className="row d-flex justify-content-between">
