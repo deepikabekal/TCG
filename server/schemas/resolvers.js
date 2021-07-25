@@ -3,6 +3,7 @@ const { User, Art } = require('../models');
 
 const { signToken } = require('../utils/auth');
 
+
 const resolvers = {
     Query: {
         me: async (parent, args, context) => {
@@ -78,5 +79,37 @@ const resolvers = {
             }
     }
 }
+
 };
 module.exports = resolvers;
+
+// writing like and unlike as routes first because I'm following a guide and understand it better this way
+// router.put('/like', requireLogin, (req, res) => {
+//     Art.findByIdAndUpdate(req.body.artId, {
+//         $push:{likes:req.user._id}
+//     }, 
+//     {
+//         new:true
+//     }).exec((err, result) => {
+//         if (err) {
+//             return res.status(422).json({error:err})
+//         } else {
+//             res.json(result)
+//         }
+//     })
+// })
+
+// router.put('/unlike', requireLogin, (req, res) => {
+//     Art.findByIdAndUpdate(req.body.artId, {
+//         $pull:{likes:req.user._id}
+//     }, 
+//     {
+//         new:true
+//     }).exec((err, result) => {
+//         if (err) {
+//             return res.status(422).json({error:err})
+//         } else {
+//             res.json(result)
+//         }
+//     })
+// })

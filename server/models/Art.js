@@ -39,9 +39,13 @@ const artSchema = new Schema({
       type: Schema.Types.ObjectId,
       ref: 'User'
     }
-  }]
+  }],
+  votes: []
 });
 
 const Art = model('Art', artSchema);
 
 module.exports = Art;
+
+// the way it's done with routes
+//  likes: [{type:mongoose.isValidObjectId, ref: 'User'}]

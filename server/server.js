@@ -17,6 +17,8 @@ const server = new ApolloServer({
 
 server.applyMiddleware({ app });
 
+console.log("STUBBIES");
+
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 

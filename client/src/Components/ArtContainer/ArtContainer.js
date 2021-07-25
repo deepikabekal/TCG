@@ -2,9 +2,22 @@ import React from 'react';
 
 const ArtContainer = ({ arts }) => {
      {/*Data from artCollection*/}
+
      if (!arts.length) {
-         return <h2>No Artwork on display! 😱 </h2>
+         arts.push({
+            _id: 'twingle',
+            image: 'https://cdn.cnn.com/cnnnext/dam/assets/200724205055-standardized-test-bubble-sheet-stock-large-169.jpg',
+            title: 'Twingle Terrier',
+            artist: 'Shibby Nam',
+            price: 5
+         });
+        // return <h2>No Artwork on display! 😱 </h2>
      }
+   
+     function flookTron (e) {
+        console.log('You clicked a flook tron.', fetch);
+    }
+    
     return (
         <div className="row d-flex justify-content-between">
         {arts && arts.map( artwork => (
@@ -16,8 +29,10 @@ const ArtContainer = ({ arts }) => {
                     <p className="card-text"> {artwork.artist} </p>
                     
                     <div className="row">
-                        <a href="#" className="btn btn-primary col mx-3">Vote 0</a>
+                        
+                        <div className="btn btn-primary col mx-3" onClick={flookTron}>Vote</div>
                         <a href="#" className="btn btn-primary col mx-3">Buy ${artwork.price}</a>
+
                     </div>
                 </div>
             </div> 
