@@ -16,8 +16,8 @@ const ArtContainer = ({ arts }) => {
                     <p className="card-text"> {artwork.artist} </p>
                     
                     <div className="row">
-                        <a href="#" className="btn btn-primary col mx-3">Vote</a>
-                        <a href="#" className="btn btn-primary col mx-3">Buy</a>
+                        <a href="#" className="btn btn-primary col mx-3">Vote 0</a>
+                        <a href="#" className="btn btn-primary col mx-3">Buy ${artwork.price}</a>
                     </div>
                 </div>
             </div> 

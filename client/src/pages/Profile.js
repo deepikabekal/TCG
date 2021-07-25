@@ -1,13 +1,13 @@
 import React, { useState } from "react"
 
 //import { Redirect, useParams } from 'react-router-dom';
-
+import { useQuery } from '@apollo/client';
 import { useMutation } from '@apollo/client';
-import { ADD_ART } from "../utils/mutations"
+import { ADD_ART } from "../utils/mutations";
+import { QUERY_ME } from "../utils/queries";
 //import Auth from '../utils/auth';
 
 function Profile() {
-
     const [loading, setLoading] = useState(false)
     const [image, setImage] = useState("")
     const [formInfo, setFormInfo] = useState({
@@ -20,6 +20,12 @@ function Profile() {
     })
 
     const [addArt] = useMutation(ADD_ART);
+
+     //use useQuery hook to make ME query request get all user added artwork
+     const { data } = useQuery(QUERY_ME);
+     //optional chaining negates the need to check if an object even exists 
+     const artistCollection = data?.me.arts || [];
+     console.log(artistCollection);
 
     const handleChange = e => {
         const { value, name } = e.target
@@ -93,7 +99,8 @@ function Profile() {
 
 
     return (
-        <form id="add-art" onSubmit={handleFormSubmit}>
+        <div>
+            <form id="add-art" onSubmit={handleFormSubmit}>
             <div>
                 <label htmlFor="title">Art Title</label>
                 <input type="text" name="title" onChange={handleChange}></input>
@@ -126,6 +133,29 @@ function Profile() {
 
             <button data-testid="button" type="submit">Submit</button>
         </form>
+
+        <div className="row d-flex justify-content-between">
+        {artistCollection && artistCollection.map( artwork => (
+        <div key={artwork._id} className="col-6 p-2">
+            <div className="card">
+                <img className="card-img-top p-3" src={artwork.image} alt="art" />
+                <div className="card-body">
+                    <h5 className="card-title"> {artwork.title} </h5>
+                    <p className="card-text"> {artwork.artist} </p>
+                    <p className="card-text"> {artwork.description}</p>
+                    <p className="card-text"> {artwork.price}</p>
+                    <p className="card-text"> {artwork.medium}</p>
+                    <p className="card-text"> {artwork.dimensions}</p>
+                </div>
+            </div> 
+        </div>
+        ))}
+        </div>
+        </div>
+        
+
+            
+        
     )
 
 }
