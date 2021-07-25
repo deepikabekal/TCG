@@ -30,7 +30,15 @@ const Home = () => {
     ]
     return (
         <section>
-            
+            <div>
+                <h2>Let's empower creative community!</h2>
+                <p>
+                    The Communit Gallery features unique paintings, sculptures, mosaics, prints, crafts, photographs and much more. To feature your art on TCG login and upload images of art.
+                </p>
+                <p>
+                    Browse the Gallery secction to vote for your favorite art or purchase community selected art.
+                </p>
+            </div>
         </section>
     )
 }
