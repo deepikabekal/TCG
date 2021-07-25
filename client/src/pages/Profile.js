@@ -124,7 +124,7 @@ function Profile() {
                 }
             </div>
 
-            <button data-testid="button" type="submit">Submit</button>
+            <button className="btn btn-grad" data-testid="button" type="submit">Submit</button>
         </form>
     )
 
