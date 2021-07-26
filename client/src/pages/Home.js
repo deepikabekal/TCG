@@ -45,7 +45,7 @@ const Home = () => {
                 <h2 className="text-center bg-color p-2 text-color">Top 3 art of the day</h2>
                 <div className="row row-cols-1 row-cols-md-3"> 
                     {artList.map((item) => (
-                        <div className="col mb-4" id="card-box" key={item.name}>
+                        <div className="col mb-4" key={item.name}>
                             <div className="card card-feature h-100">
                                 <img src={require(`../Assets/${item.imageName}`).default} className="image img-thumbnail" alt="featured art"/>
                                 <div className="card-body card-feature">

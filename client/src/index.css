@@ -320,6 +320,13 @@ nav a:hover {
   margin: 5px;
 }
 
+.image-gallery {
+  position: relative;
+    width: 500px;
+    height: 400px;
+
+}
+
 /* Form Profile Page */
 .label-input-container {
   display: flex;
