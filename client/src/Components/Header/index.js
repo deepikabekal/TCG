@@ -11,7 +11,7 @@ const Header = () => {
     
     return (
         <header className="bg-color mb-4 py-2 flex-row align-center">
-          <div className="container flex-row justify-space-between-lg justify-center align-center">
+          <div className="container flex-row justify-space-between-lg justify-center align-center p-2">
             <Link to="/">
               <h1>The Community Gallery</h1>
             </Link>
@@ -30,7 +30,7 @@ const Header = () => {
                   <Link to="/home">Home</Link>
                   <Link to="/gallery">Gallery</Link>
                   <Link to="/login">Login</Link>
-                  <Link to="/signup">Sign Up</Link>
+                  <Link to="/signup">Sign-Up</Link>
                 </>
               )}
             </nav>
