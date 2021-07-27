@@ -17,18 +17,28 @@ const server = new ApolloServer({
 
 server.applyMiddleware({ app });
 
-console.log("STUBBIES");
-
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
+app.use(require('./controllers/api/vote-routes'));
 
 // Serve up static assets
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
 }
 
+app.post('/vote', (req, res) => {
+  console.log("hello", req.body);
+  
+  res.send({hello: 'world'});
+});
+
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/build/index.html'));
+  // There is no "build" folder in dev env.
+
+  // res.sendFile(path.join(__dirname, '../client/build/index.html'));
+  
+  res.send(`<div>TEMP</div>`);
 });
 
 db.once('open', () => {
@@ -37,3 +47,4 @@ db.once('open', () => {
     console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
   });
 });
+

@@ -20,8 +20,9 @@ type Art {
     description: String
     medium: String
     price: Int!
-    dimensions : String!
+    dimensions: String!
     image: String!
+    vote: [User]
 }
 
 type Query {
@@ -36,7 +37,6 @@ type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
     addArt(title: String!, description: String, medium: String, price: Int!, dimensions: String!, image: String!) : Art
-    votes : [String]
 }
 `
 
