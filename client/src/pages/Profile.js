@@ -99,8 +99,9 @@ function Profile() {
 
 
     return (
-        <div>
-            <div className="card">
+        <div className ="flex-row justify-center mb-4">
+            <div className="col-12 col-md-6">
+            <div className='card'>
                 <h4 className="card-header">Add your artwork</h4>
                 <div className="card-body">
                     <form id="add-art" onSubmit={handleFormSubmit}>
@@ -137,7 +138,7 @@ function Profile() {
                     </form>
                 </div>
             </div>
-
+            </div>
             <div className="row d-flex justify-content-between">
                 <h1 class="col-12 text-center">My Featured Artwork</h1>
                 {artistCollection && artistCollection.map(artwork => (

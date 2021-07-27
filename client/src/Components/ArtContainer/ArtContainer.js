@@ -19,21 +19,21 @@ const ArtContainer = ({ arts }) => {
     }
     
     return (
-        <div className="row d-flex justify-content-between">
+        <div className="row row-cols-1 row-cols-md-2">
         {arts && arts.map( artwork => (
-        <div key={artwork._id} className="col-6 p-2">
-            <div className="card">
-                <img className="card-img-top p-3" src={artwork.image} alt="art" />
-                <div className="card-body">
-                    <h5 className="card-title"> {artwork.title} </h5>
-                    <p className="card-text"> {artwork.artist} </p>
-                    
-                    <div className="row">
-                        
-                        <div className="btn btn-primary col mx-3" onClick={flookTron}>Vote</div>
-                        <a href="#" className="btn btn-primary col mx-3">Buy ${artwork.price}</a>
-
-                    </div>
+        <div key={artwork._id} className="col mb-4">
+            <div className="card card-feature h-100">
+                <img className="image-gallery img-thumbnail" src={artwork.image} alt="art" />
+                <div className="card-body ">
+                    {/* <div className="justify-space-between-lg flex-row"> */}
+                            <h5 className="card-title art-title-text text-color"> {artwork.title} </h5>
+                            <p className="card-text">Artist: {artwork.artist} </p>
+                            <p className="card-text">Description: {artwork.description}</p>
+                        <div>
+                            <a href="#" className="btn btn-grad mx-3">Vote  </a>
+                            <a href="#" className="btn btn-grad mx-3">Buy ${artwork.price}</a>
+                        </div>
+                    {/* </div> */}
                 </div>
             </div> 
         </div>

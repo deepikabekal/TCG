@@ -127,7 +127,7 @@ nav a:hover {
 
 /* CARDS for signup/login forms */
 .card {
-  margin: 0 0 20px 0;
+  margin: 0 0 10px 0;
   /* border: 1px solid var(--dark); */
   border-radius: var(--border-radius);
   background-color: var(--primary);
@@ -173,7 +173,7 @@ nav a:hover {
 
 /* LAYOUT */
 .container {
-  width: 85%;
+  /* width: 85%; */
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
@@ -318,6 +318,13 @@ nav a:hover {
 
 .h-margin {
   margin: 5px;
+}
+
+.image-gallery {
+  position: relative;
+    /* width: 500px; */
+    height: 400px;
+
 }
 
 /* Form Profile Page */
