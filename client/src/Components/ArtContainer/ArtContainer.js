@@ -11,7 +11,7 @@ const ArtContainer = ({ arts }) => {
         <div key={artwork._id} className="col mb-4">
             <div className="card card-feature h-100">
                 <img className="image-gallery img-thumbnail" src={artwork.image} alt="art" />
-                <div className="card-body ">
+                <div className="card-body card-feature ">
                     {/* <div className="justify-space-between-lg flex-row"> */}
                             <h5 className="card-title art-title-text text-color"> {artwork.title} </h5>
                             <p className="card-text">Artist: {artwork.artist} </p>
