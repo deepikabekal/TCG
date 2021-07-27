@@ -5,6 +5,7 @@ import { useQuery } from '@apollo/client';
 import { useMutation } from '@apollo/client';
 import { ADD_ART } from "../utils/mutations";
 import { QUERY_ME } from "../utils/queries";
+import UserArtCollection from "../Components/UserArtCollection";
 //import Auth from '../utils/auth';
 
 function Profile() {
@@ -71,6 +72,7 @@ function Profile() {
         })
 
         setLoading(false)
+        document.getElementById('upload-img').className = "display-img"
     }
 
     const handleFormSubmit = async (event) => {
@@ -105,8 +107,7 @@ function Profile() {
         <div className="flex-row justify-center" >
             <div className="col-12 col-md-4">
                 <div className='card'>
-                <h4 className="card-header">Add your artwork</h4>
-
+                    <h4 className="card-header">Add your artwork</h4>
                     <div className="card-body">
                         <form id="add-art" onSubmit={handleFormSubmit}>
                                 <input type="text" name="title" className="form-input" placeholder='Title' onChange={handleChange}></input>
@@ -119,7 +120,7 @@ function Profile() {
                                 {
                                     loading ? (
                                         <h3>Loading...</h3>
-                                    ) : <img src={image} id="upload-img" alt="Your art" />
+                                    ) : <img src={image} id="upload-img" alt=""  />
                                 }
                             </div>
                             <button className="btn btn-grad" data-testid="button" type="submit">Add To Gallery</button>
@@ -127,32 +128,8 @@ function Profile() {
                     </div>
                 </div>
             </div>
-            <div className="row d-flex justify-content-between">
-            <h2 className="col-12 text-bold m-2">My Featured Artwork</h2>
-                <div className="row row-cols-1 row-cols-md-2 m-2"> 
-                {artistCollection && artistCollection.map(artwork => (
-                        <div key={artwork._id} className="col mb-4">
-                            <div className="card card-feature h-100">
-                                <img className="image img-thumbnail" alt="your art" src={artwork.image} />
-                                <div className="card-body card-feature">
-                                    <div className="justify-space-between-lg flex-row">
-                                        <div>
-                                            <h5 className="card-title"> {artwork.title} </h5>
-                                            <p className="card-text"> {artwork.artist} </p>
-                                        </div>
-                                        <div className="flex-column text-center">
-                                            <span className="span-text text-bold"> {artwork.price}</span>
-                                        </div>
-                                    </div>
-                                        <p className="card-text"> {artwork.description}</p>
-                                        <p className="card-text"> {artwork.medium}</p>
-                                        <p className="card-text"> {artwork.dimensions}</p>
-                                </div>
-                            </div>
-                        </div>
-                ))}
-                </div>
-            </div>
+            <UserArtCollection userArts={artistCollection}></UserArtCollection>
+
         </div>
 
 

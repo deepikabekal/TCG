@@ -298,7 +298,7 @@ nav a:hover {
 }
 
 .span-text {
-  font-size: 20px;
+  font-size: 18px;
   /* background-color: var(--primary); */
   margin-bottom: 3px;
   /* border: 1px solid var(--primary); */
@@ -349,5 +349,6 @@ input[type=file]{
 
 .display-img {
   margin: 5px 0 5px 0;
-  width : 200px
+  width : 250px;
+  height: 300px;
 }
