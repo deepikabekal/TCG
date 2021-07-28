@@ -3,23 +3,31 @@ const router = express.Router();
 const { Art } = require('../../models');
 
 router.put('/api/vote', async (req, res) => {
+  
+
     try {
-      const art = await Art.findByIdAndUpdate(req.body.artId, 
-    {
-      $push:{vote:req.body.user_id}
-    }, 
-    {
-      new:true
-    })
+      console.log("routehit", req.body)
+      const art = await Art.findOneAndUpdate(
+        { _id: req.body.artId },
+        { $addToSet:{vote:req.body.user} }, 
+        { new:true }
+      )
+    console.log("art", art)
     res.json(art)
   } catch (err) {
     console.log(err)
   }
 });
 
+// const updatedUser = await User.findOneAndUpdate(
+//   { _id: context.user._id },
+//   { $addToSet: { savedBooks: args } },
+//   { new: true, runValidators: true }
+// );
+
 router.put('/unvote', (req, res) => {
     Art.findByIdAndUpdate(req.body.artId, {
-      $pull:{vote:req.user._id}
+      $pull:{vote:req.body.user}
     }, 
     {
       new:true
