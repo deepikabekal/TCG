@@ -353,5 +353,11 @@ input[type=file]{
   height: 300px;
 }
 
+nav{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
 /* -------------------------media queries------------------------------------- */
 
