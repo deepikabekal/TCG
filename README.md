@@ -3,7 +3,8 @@
 ## Description
 An application that will feature unique paintings, sculptures, mosaics, prints, crafts, photographs etc created by the various artists. The artists can sign up and upload their artwork. The art will then be available for users and visitors to vote. Once any art has more than 10 votes it will be available purchase.
 
-## Deployed App
+## Deployed App on Heroku
+https://cryptic-thicket-25855.herokuapp.com/
 
 ## Screenshots
 The Home Page
