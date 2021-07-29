@@ -5,6 +5,7 @@ import { useQuery } from '@apollo/client';
 import { useMutation } from '@apollo/client';
 import { ADD_ART } from "../utils/mutations";
 import { QUERY_ME } from "../utils/queries";
+import UserArtCollection from "../Components/UserArtCollection";
 //import Auth from '../utils/auth';
 
 function Profile() {
@@ -47,6 +48,7 @@ function Profile() {
         const data = new FormData()
         data.append("file", files[0])
         data.append("upload_preset", "jq4k8cp4")
+
         setLoading(true)
         const res = await fetch("https://api.cloudinary.com/v1_1/dg14lkrkd/image/upload",
             {
@@ -64,10 +66,13 @@ function Profile() {
         setFormInfo((prevValue) => {
             return {
                 ...prevValue,
-                image: file.secure_url
+                image: file.secure_url,
+                
             }
         })
+
         setLoading(false)
+        document.getElementById('upload-img').className = "display-img"
     }
 
     const handleFormSubmit = async (event) => {
@@ -99,64 +104,32 @@ function Profile() {
 
 
     return (
-        <div className ="flex-row justify-center mb-4">
-            <div className="col-12 col-md-6">
-            <div className='card'>
-                <h4 className="card-header">Add your artwork</h4>
-                <div className="card-body">
-                    <form id="add-art" onSubmit={handleFormSubmit}>
-                        <div className="label-input-container">
-                            <label htmlFor="title">Art Title</label>
-                            <input type="text" name="title" onChange={handleChange}></input>
-                        </div>
-                        <div className="label-input-container" >
-                            <label htmlFor="description">Description</label>
-                            <input type="text" name="description" onChange={handleChange} ></input>
-                        </div>
-                        <div className="label-input-container">
-                            <label htmlFor="medium">Medium</label>
-                            <input type="text" name="medium" onChange={handleChange}></input>
-                        </div>
-                        <div className="label-input-container">
-                            <label htmlFor="medium">Dimensions</label>
-                            <input type="text" name="dimensions" onChange={handleChange}></input>
-                        </div>
-                        <div className="label-input-container">
-                            <label htmlFor="sellprice">Selling Price</label>
-                            <input type="text" name="price" onChange={handleChange}></input>
-                        </div>
-                        <div className="label-input-container">
-                            <label >Upload Art image</label>
-                            <input type="file" name="image" onChange={uploadImage}></input>
-                            {
-                                loading ? (
-                                    <h3>Loading...</h3>
-                                ) : <img className="display-img" src={image} alt="" style={{ width: "300px" }} />
-                            }
-                        </div>
-                        <button className="btn btn-grad" data-testid="button" type="submit">Add To Gallery</button>
-                    </form>
+        <div className="flex-row justify-center" >
+            <div className="col-12 col-md-4">
+                <div className='card'>
+                    <h4 className="card-header">Add your artwork</h4>
+                    <div className="card-body">
+                        <form id="add-art" onSubmit={handleFormSubmit}>
+                                <input type="text" name="title" className="form-input" placeholder='Title' onChange={handleChange}></input>
+                                <input type="text" name="description" className="form-input" placeholder='Description' onChange={handleChange} ></input>
+                                <input type="text" name="medium" className="form-input" placeholder='Medium' onChange={handleChange}></input>
+                                <input type="text" name="dimensions" className="form-input" placeholder='Dimensions' onChange={handleChange}></input>
+                                <input type="text" name="price" className="form-input" placeholder='Price' onChange={handleChange}></input>
+                            <div className="label-input-container">
+                                <input type="file" name="image" onChange={uploadImage}></input>
+                                {
+                                    loading ? (
+                                        <h3>Loading...</h3>
+                                    ) : <img src={image} id="upload-img" alt=""  />
+                                }
+                            </div>
+                            <button className="btn btn-grad" data-testid="button" type="submit">Add To Gallery</button>
+                        </form>
+                    </div>
                 </div>
             </div>
-            </div>
-            <div className="row d-flex justify-content-between">
-                <h1 class="col-12 text-center">My Featured Artwork</h1>
-                {artistCollection && artistCollection.map(artwork => (
-                    <div key={artwork._id} className="col-6 p-2">
-                        <div className="card">
-                            <img className="card-img-top p-3" src={artwork.image} alt="art" />
-                            <div className="card-body">
-                                <h5 className="card-title"> {artwork.title} </h5>
-                                <p className="card-text"> {artwork.artist} </p>
-                                <p className="card-text"> {artwork.description}</p>
-                                <p className="card-text"> {artwork.price}</p>
-                                <p className="card-text"> {artwork.medium}</p>
-                                <p className="card-text"> {artwork.dimensions}</p>
-                            </div>
-                        </div>
-                    </div>
-                ))}
-            </div>
+            <UserArtCollection userArts={artistCollection}></UserArtCollection>
+
         </div>
 
 

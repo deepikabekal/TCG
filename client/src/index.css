@@ -286,7 +286,7 @@ nav a:hover {
 /* homepage css */
 .card-homepage, .card-feature {
   /* background-image: linear-gradient(160deg, #fff1eb 0%, #fff1eb 51%, #f3cc8c 100%, var(--light) 100%) ; */
-  background: linear-gradient(to bottom, rgba(20,33,61,0.5897890837296196) 0%, rgba(255,255,255,1) 25%, rgba(255,255,255,1) 75%, rgba(20,33,61,0.5897890837296196) 100%);
+  background: linear-gradient(to bottom, rgba(92,108,143,0.3637021272078804) 0%, rgba(255,255,255,1) 10%, rgba(255,255,255,1) 90%, rgba(92,108,143,0.3637021272078804) 100%);
   box-shadow: 5px 5px 5px lightgray; 
   color: var(--tertiary);
 }
@@ -298,22 +298,31 @@ nav a:hover {
 }
 
 .span-text {
-  font-size: 20px;
-  background-color: #14213d;
+  font-size: 18px;
+  /* background-color: var(--primary); */
   margin-bottom: 3px;
-  border: 1px solid var(--tertiary);
+  /* border: 1px solid var(--primary); */
   border-radius: 2px;
   padding: 2px;
+  color: var(--tertiary);
 }
 
 .text-color {
-  color : var(--light)
+  color : var(--light);
+}
+
+.text-color-2 {
+  color: var(--tertiary);
+}
+
+.text-bold {
+  font-weight: bold;
 }
 
 .art-title-text {
-  background-color: var(--tertiary);
+  color: var(--tertiary);
   padding: 5px;
-  width: fit-content;
+  font-weight: bold;
 }
 
 .h-margin {
@@ -339,5 +348,10 @@ input[type=file]{
 }
 
 .display-img {
-  margin: 5px 0 5px 0
+  margin: 5px 0 5px 0;
+  width : 250px;
+  height: 300px;
 }
+
+/* -------------------------media queries------------------------------------- */
+
