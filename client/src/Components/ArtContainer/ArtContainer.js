@@ -2,11 +2,12 @@ import React from 'react';
 //import { QUERY_ME } from "../../utils/queries";
 //import { useQuery } from '@apollo/client';
 import Auth from '../../utils/auth';
+import { Link } from 'react-router-dom';
 
 const ArtContainer = ({ arts }, ) => {
     
     
-     console.log(arts, "artcontainer")
+    console.log(arts, "artcontainer")
     //console.log("container", user)
     //console.log('userid', user._id)
 
@@ -35,6 +36,10 @@ const ArtContainer = ({ arts }, ) => {
         //  }];
         return <h2>No Artwork on display! 😱 </h2>
      }
+
+     const loginRequired = function() {
+
+     }
     
     return (
         <div className="row row-cols-1 row-cols-md-2">
@@ -49,12 +54,23 @@ const ArtContainer = ({ arts }, ) => {
                                     <p className="card-text">Artist: {artwork.artist} </p>
                                     <p className="card-text">Description: {artwork.description}</p>
                                 
-                                <div>
-                                    
-                                    <a href="#" className="btn btn-grad mx-3" onClick={() => vote (artwork)}>Vote  </a>
-                                    <a href="#" className="btn btn-grad mx-3">Buy ${artwork.price}</a>
-                                </div>
-                            {/* </div> */}
+                                
+                                {Auth.loggedIn() ? (
+                                    <>
+                                    <div>
+                                        <a href="#" className="btn btn-grad mx-3" onClick={() => vote (artwork)}>Vote  </a>
+                                        <a href="#" className="btn btn-grad mx-3">Buy ${artwork.price}</a>
+                                    </div>
+                                    </>) : (
+                                        <>
+                                     <div>
+                                        <Link to="/login" className="btn btn-grad mx-3" >Login to vote  </Link>
+                                        <a href="#" className="btn btn-grad mx-3">Login to purchase {artwork.price}</a>
+                                    </div>
+                                    </>
+                                    )
+                                }
+                               
 
                         </div>
                     </div> 
