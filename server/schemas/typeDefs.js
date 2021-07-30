@@ -20,8 +20,9 @@ type Art {
     description: String
     medium: String
     price: Int!
-    dimensions : String!
+    dimensions: String!
     image: String!
+    vote: [User]
 }
 
 type Query {

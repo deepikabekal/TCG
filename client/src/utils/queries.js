@@ -57,6 +57,9 @@ export const QUERY_ARTS = gql`
       price
       dimensions
       image
+      vote {
+        _id
+      }
     }
   }
 `;
