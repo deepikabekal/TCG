@@ -3,6 +3,7 @@ const { User, Art } = require('../models');
 
 const { signToken } = require('../utils/auth');
 
+
 const resolvers = {
     Query: {
         me: async (parent, args, context) => {
@@ -30,6 +31,7 @@ const resolvers = {
         arts: async () => {
             return Art.find()
             .select('-__v')
+            .populate('vote')
         },
 
         // Query one art based on title
@@ -78,5 +80,9 @@ const resolvers = {
             }
     }
 }
+
 };
 module.exports = resolvers;
+
+
+

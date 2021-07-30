@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const mongoose = require('mongoose');
 
 const artSchema = new Schema({
   title: {
@@ -30,18 +31,13 @@ const artSchema = new Schema({
     type: String,
     required: true
   },
-  voteCount: {
-    type: Number,
-    default: 0
-  },
   vote: [{
-    User: {
-      type: Schema.Types.ObjectId,
-      ref: 'User'
-    }
+    type: Schema.Types.ObjectId, 
+    ref: 'User'
   }]
 });
 
 const Art = model('Art', artSchema);
 
 module.exports = Art;
+
