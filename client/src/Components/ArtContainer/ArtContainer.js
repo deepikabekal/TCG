@@ -65,7 +65,7 @@ const ArtContainer = ({ arts }, ) => {
                                         <>
                                      <div>
                                         <Link to="/login" className="btn btn-grad mx-3" >Login to vote  </Link>
-                                        <a href="#" className="btn btn-grad mx-3">Login to purchase {artwork.price}</a>
+                                        <Link to="/login" className="btn btn-grad mx-3" >Login to purchase {artwork.price} </Link>
                                     </div>
                                     </>
                                     )
