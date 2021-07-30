@@ -32,7 +32,7 @@ const Home = () => {
         <section>
             <div className=" card text-center card-homepage">
                 <h2 className="h-margin p-2">
-                    <span className="w-content bg-color text-color p-1">Let's empower creative community!</span>
+                    <span className="w-content text-color-2 text-bold p-1">Let's empower creative community!</span>
                 </h2>
                 <p>
                     The Community Gallery features unique paintings, sculptures, mosaics, prints, crafts, photographs and much more. To feature your art on TCG login and upload images of art.
@@ -42,7 +42,7 @@ const Home = () => {
                 </p>
             </div>
             <div>
-                <h2 className="text-center bg-color p-2 text-color">Top 3 art of the day</h2>
+                <h2 className="text-center p-2 text-color-2 text-bold">Top 3 art of the day</h2>
                 <div className="row row-cols-1 row-cols-md-3"> 
                     {artList.map((item) => (
                         <div className="col mb-4" key={item.name}>
@@ -51,12 +51,12 @@ const Home = () => {
                                 <div className="card-body card-feature">
                                     <div className="justify-space-between-lg flex-row">
                                         <div>
-                                            <h5 className="card-title text-color art-title-text">{item.artName}</h5>
+                                            <h5 className="card-title art-title-text">{item.artName}</h5>
                                             <p className="card-text">Artist: {item.name}</p>
                                         </div>
-                                        <div className="flex-column text-center text-color">
-                                            <span className="span-text ">{item.votes}</span>
-                                            <span className="span-text ">${item.price}</span> 
+                                        <div className="flex-column text-center">
+                                            {/* <span className="span-text ">{item.votes}</span> */}
+                                            <span className="span-text text-bold">${item.price}</span> 
                                         </div>
                                     </div>
                                     <p className="card-text">{item.description}</p>
