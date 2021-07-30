@@ -1,6 +1,6 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import { QUERY_ARTS, QUERY_ME } from '../utils/queries';
+import { QUERY_ARTS } from '../utils/queries';
 import ArtContainer from '../Components/ArtContainer/ArtContainer.js';
 
 const Gallery = () => {

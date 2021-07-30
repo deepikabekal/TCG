@@ -1,16 +1,17 @@
 import React from 'react';
-import { QUERY_ME } from "../../utils/queries";
-import { useQuery } from '@apollo/client';
+//import { QUERY_ME } from "../../utils/queries";
+//import { useQuery } from '@apollo/client';
 import Auth from '../../utils/auth';
 
 const ArtContainer = ({ arts }, ) => {
-     {/*Data from artCollection*/}
-     const user = Auth.getProfile().data
+    
+    
      console.log(arts, "artcontainer")
-    console.log("container", user)
-    console.log('userid', user._id)
+    //console.log("container", user)
+    //console.log('userid', user._id)
 
     async function vote (artwork) {
+        const user = Auth.getProfile().data
         console.log('You clicked vote.', artwork);
         await fetch('/api/vote', {
             method: 'PUT',           
@@ -47,7 +48,9 @@ const ArtContainer = ({ arts }, ) => {
                                     <h5 className="card-title art-title-text text-color"> {artwork.title} </h5>
                                     <p className="card-text">Artist: {artwork.artist} </p>
                                     <p className="card-text">Description: {artwork.description}</p>
+                                
                                 <div>
+                                    
                                     <a href="#" className="btn btn-grad mx-3" onClick={() => vote (artwork)}>Vote  </a>
                                     <a href="#" className="btn btn-grad mx-3">Buy ${artwork.price}</a>
                                 </div>
