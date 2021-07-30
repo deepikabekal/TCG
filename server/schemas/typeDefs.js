@@ -36,6 +36,7 @@ type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
     addArt(title: String!, description: String, medium: String, price: Int!, dimensions: String!, image: String!) : Art
+    removeArt(artId: String!): User
 }
 `
 

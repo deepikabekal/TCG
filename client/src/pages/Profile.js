@@ -3,9 +3,10 @@ import React, { useState } from "react"
 //import { Redirect, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { useMutation } from '@apollo/client';
-import { ADD_ART } from "../utils/mutations";
+import { ADD_ART, REMOVE_ART } from "../utils/mutations";
 import { QUERY_ME } from "../utils/queries";
-//import Auth from '../utils/auth';
+import { removeArgumentsFromDocument } from "@apollo/client/utilities";
+import Auth from '../utils/auth';
 
 function Profile() {
     const [loading, setLoading] = useState(false)
@@ -20,6 +21,7 @@ function Profile() {
     })
 
     const [addArt] = useMutation(ADD_ART);
+    const [removeArt] = useMutation(REMOVE_ART)
 
     //use useQuery hook to make ME query request get all user added artwork
     const { data } = useQuery(QUERY_ME);
@@ -96,6 +98,26 @@ function Profile() {
         }
     };
 
+    const handleRemoveArt = async (artId) => {
+        
+        const token = Auth.loggedIn() ? Auth.getToken() : null;
+        
+        if (!token) {
+            return false;
+        }
+
+        try {
+            await removeArt({               
+                 variables: {artId}
+                 
+            });
+
+            removeArt(artId);
+
+            } catch (err) {
+                console.error(err);
+            }
+    };
 
 
     return (
@@ -139,6 +161,7 @@ function Profile() {
                 </div>
             </div>
             </div>
+            
             <div className="row d-flex justify-content-between">
                 <h1 class="col-12 text-center">My Featured Artwork</h1>
                 {artistCollection && artistCollection.map(artwork => (
@@ -153,6 +176,7 @@ function Profile() {
                                 <p className="card-text"> {artwork.medium}</p>
                                 <p className="card-text"> {artwork.dimensions}</p>
                             </div>
+                            <a href="#" className="btn btn-grad mx-3" onClick={handleRemoveArt()}>Remove</a>
                         </div>
                     </div>
                 ))}
