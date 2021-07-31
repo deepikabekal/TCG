@@ -359,5 +359,15 @@ nav{
   flex-wrap: wrap;
 }
 
+.secondaryBtn {
+  background-color: var(--tertiary);
+  color: var(--primary);
+}
+
+.secondaryBtn:hover {
+  color: var(--tertiary);
+  background-color: var(--light);
+}
+
 /* -------------------------media queries------------------------------------- */
 

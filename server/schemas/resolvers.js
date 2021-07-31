@@ -78,9 +78,19 @@ const resolvers = {
 
             return art 
             }
+        },
+        removeArt: async (_, {artId}, context) => {
+            if(context.user){
+                const user = await User.findByIdAndUpdate(
+                {_id: context.user._id },
+                {$pull: {arts: artId}},
+                {new: true}
+                );
+                return user;
+        }
+        throw new AuthenticationError('You are not logged in.')
+        }
     }
-}
-
 };
 module.exports = resolvers;
 

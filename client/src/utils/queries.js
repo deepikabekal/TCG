@@ -31,6 +31,9 @@ export const QUERY_ME = gql`
         dimensions
         image
         artist
+        vote{
+          _id
+        }
       }
     }
   }

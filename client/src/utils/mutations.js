@@ -41,3 +41,24 @@ mutation addArt($title: String!, $description: String, $medium: String, $price: 
   }
 }
 `;
+
+export const REMOVE_ART = gql`
+    mutation removeBook($artId: String!){
+        removeBook(artId: $bookId){
+              _id
+              username
+              email
+              arts {
+                _id
+                title
+                description
+                medium
+                price
+                dimensions
+                image
+                artist
+              }
+            }
+          }
+`;
+

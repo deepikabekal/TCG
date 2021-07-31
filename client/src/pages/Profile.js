@@ -5,6 +5,7 @@ import { useQuery } from '@apollo/client';
 import { useMutation } from '@apollo/client';
 import { ADD_ART } from "../utils/mutations";
 import { QUERY_ME } from "../utils/queries";
+//import Auth from '../utils/auth';
 import UserArtCollection from "../Components/UserArtCollection";
 //import Auth from '../utils/auth';
 
@@ -21,9 +22,11 @@ function Profile() {
     })
 
     const [addArt] = useMutation(ADD_ART);
+    //const [removeArt] = useMutation(REMOVE_ART)
 
     //use useQuery hook to make ME query request get all user added artwork
     const { data } = useQuery(QUERY_ME);
+    console.log(data);
     //optional chaining negates the need to check if an object even exists 
     const artistCollection = data?.me.arts || [];
     console.log(artistCollection);
@@ -101,6 +104,26 @@ function Profile() {
         }
     };
 
+    // const handleRemoveArt = async (artId) => {
+        
+    //     const token = Auth.loggedIn() ? Auth.getToken() : null;
+        
+    //     if (!token) {
+    //         return false;
+    //     }
+
+    //     try {
+    //         await removeArt({               
+    //              variables: {artId}
+                 
+    //         });
+
+    //         removeArt(artId);
+
+    //         } catch (err) {
+    //             console.error(err);
+    //         }
+    // };
 
 
     return (

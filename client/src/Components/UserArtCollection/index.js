@@ -22,12 +22,13 @@ const UserArtCollection = ({userArts}) => {
                                     <div className="justify-space-between-lg flex-row">
                                         <div>
                                             <h5 className="card-title"> {artwork.title} </h5>
-                                            <p className="card-text">Artist: {artwork.artist} </p>
                                         </div>
                                         <div className="flex-column text-center">
                                             <span className="span-text text-bold">${artwork.price}</span>
                                         </div>
                                     </div>
+                                        <p className="card-text">Artist: {artwork.artist} </p>
+                                        <p className="card-text">Votes: {artwork.vote.length} </p>
                                         <p className="card-text">Description: {artwork.description}</p>
                                         <p className="card-text">Medium: {artwork.medium}</p>
                                         <p className="card-text">Dimensions: {artwork.dimensions}</p>
