@@ -2,6 +2,7 @@ import {useState} from 'react';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
+import { Link } from 'react-router-dom';
 
 const Login = (props) => {
     const [formState, setFormState] = useState({ email: '', password: '' });
@@ -73,7 +74,14 @@ const Login = (props) => {
             {error && <div>Login failed</div>}
           </div>
         </div>
-      </div>
+        <div className="row d-flex justify-content-center m-5">
+          <h4 className="col-12 text-center">New to The Community Gallery! Sign up to feature your artwork and discover unique artwork. </h4>
+          <div className="col-12 d-flex justify-content-center">
+                    <Link to="/signup" className="btn m-4 px-4 secondaryBtn" >Join Today</Link>
+                    </div>
+                    </div>
+        </div>
+  
     </main>
   );
 }
