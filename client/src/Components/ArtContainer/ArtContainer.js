@@ -3,8 +3,8 @@ import React from 'react';
 //import { useQuery } from '@apollo/client';
 import Auth from '../../utils/auth';
 
+
 const ArtContainer = ({ arts }, ) => {
-    
     
      console.log(arts, "artcontainer")
     //console.log("container", user)
@@ -22,8 +22,9 @@ const ArtContainer = ({ arts }, ) => {
             body: JSON.stringify({
                 user: user._id,
                 artId: artwork._id
-            }) 
+            })   
         });
+        window.location.reload();
     }
      if (!arts.length) {
         //  arts = [{
